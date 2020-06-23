@@ -1,14 +1,8 @@
-def query_value_serialize(key, value):
-    try:
-        value = value[-1]
-    except IndexError:
-        return None
+def serialize_query_params(query_params):
+    query_params = {
+        key_serialize(key): query_value_serialize(key, query_params.getlist(key))
+        for key
+        in query_params.keys()
+    }
 
-    if value.isnumeric():
-        return int(value)
-    elif value == 'true':
-        return True
-    elif value == 'false':
-        return False
-    else:
-        return value
+    return query_params

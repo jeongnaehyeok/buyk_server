@@ -24,6 +24,7 @@ class BikeListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Bike
+        # 쿼리 옵션 https://docs.djangoproject.com/en/3.0/ref/models/querysets/
         fields = (
             'model'
             'deal_area',
@@ -55,7 +56,7 @@ class BikeCreateSerializer(serializers.ModelSerializer):
         model = Bike
         fields = (
             'model',
-            'style',
+            'bike_style',
             'price',
             'deal_area',
             'model_year',
@@ -111,16 +112,20 @@ class BikeUpdateSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         return instance.get_info()
 
+class BikeDeleteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bike
+
 class BikeImageCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = BikeImage
         fields = (
-            'image'
+            'image',
+            'bike',
         )
 
     def to_representation(self, instance):
         return instance.get_info()
-
 
 class BikeImageDeleteSerializer(serializers.ModelSerializer):
     class Meta:
@@ -132,3 +137,4 @@ class RegisteredBikeListSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         return instance.get_info()
+

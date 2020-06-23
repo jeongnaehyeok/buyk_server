@@ -123,15 +123,15 @@ class Bike(models.Model):
     def get_info(self):
         return {
             'id': self.pk,
-            'model': self.model.name,
-            'user': self.get_username(),
+            'model': self.model,
+            'user': self.user.get_username(),
             'price': self.price,
             'bike_style': self.get_bike_style_display(),
             'payment_method': self.payment_method.get_info(),
             'images': [
                 image.get_info()
                 for image
-                in self.image_set.order_by('id').all()
+                in self.bike_image.order_by('id').all()
             ],
             'deal_area': self.get_deal_area_display(),
             'model_year': self.model_year,
@@ -159,7 +159,7 @@ class BikeImage(models.Model):
     def get_info(self):
         return {
             'id': self.pk,
-            'index': self.image.path,
+            'image': self.image.path,
         }
 
     # 자동 삭제
