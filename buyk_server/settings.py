@@ -36,6 +36,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'rest_auth.registration',
+
+    # app
+    'bikes'
 ]
 
 MIDDLEWARE = [
