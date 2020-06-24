@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth.registration',
 
+    # CORS
+    'corsheaders',
+
     # app
     'bikes'
 ]
@@ -49,6 +52,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # cors
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'buyk_server.urls'
@@ -144,3 +150,27 @@ JWT_AUTH = {
 ACCOUNT_EMAIL_REQUIRED = False # 가입시 이메일 필요
 ACCOUNT_EMAIL_VERIFICATION = None # 이메일 인증여부
 ACCOUNT_LOGOUT_ON_GET = False # 로그아웃 설정
+
+# CORS
+CORS_ORIGIN_ALLOW_ALL= True # 모든 요청을 허락한다는 헤더
+
+# 아래와 같은 접근을 허락함
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'POST',
+    'PUT',
+)
+
+# 아래와 같은 헤더를 허락함
+CORS_ALLOW_HEADERS = (
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+)

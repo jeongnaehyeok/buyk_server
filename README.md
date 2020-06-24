@@ -46,14 +46,19 @@ $ pip install -r requirements.txt
 $ python manage.py makemigrations
 $ python manage.py migrate
 # 실행
-python manage.py runserver 127.0.0.1:8000
+$ python manage.py runserver 127.0.0.1:8000
 ```
+
+## 추가 개발필요
+- permission을 이용한 접근 권한
+- serializer 및 view 통합
 
 ## 추가 하고 싶은 기능
 
 - django-allauth를 이용한 소셜로그인
 - Like기능
 - User 모델 변경
+
 
 ## 후기
 
