@@ -4,6 +4,13 @@ from .models import BikePaymentMethod, Bike, BikeImage
 
 required_false = {'required': False}
 
+class BikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bike
+
+    def to_representation(self, instance):
+        return instance.get_info()
+
 class BikePaymentMethodSerializer(serializers.ModelSerializer):
     class Meta:
         model = BikePaymentMethod
@@ -131,10 +138,4 @@ class BikeImageDeleteSerializer(serializers.ModelSerializer):
     class Meta:
         model = BikeImage
 
-class RegisteredBikeListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Bike
-
-    def to_representation(self, instance):
-        return instance.get_info()
 

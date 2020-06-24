@@ -7,13 +7,13 @@ from rest_framework.filters import SearchFilter
 from .models import Bike, BikeImage
 from .serializers import (
     BikePaymentMethodSerializer,
+    BikeSerializer,
     BikeListSerializer,
     BikeCreateSerializer,
     BikeUpdateSerializer,
     BikeDeleteSerializer,
     BikeImageCreateSerializer,
     BikeImageDeleteSerializer,
-    RegisteredBikeListSerializer
 )
 
 class BikeList(generics.ListAPIView):
@@ -44,6 +44,10 @@ class BikeCreate(generics.CreateAPIView):
             return serializer.save(user=self.request.user)
         else:
             raise exceptions.PermissionDenied('로그인이 필요합니다.')
+
+class BikeDetail(generics.RetrieveAPIView):
+    serializer_class = BikeSerializer
+    queryset = Bike.objects.all()
 
 class BikeUpdate(generics.UpdateAPIView):
     serializer_class = BikeUpdateSerializer
@@ -98,7 +102,7 @@ class BikeImageDelete(generics.DestroyAPIView):
             raise exceptions.PermissionDenied('해당 매물을 수정 할 권한이 없습니다.')
 
 class RegisteredBikeList(generics.ListAPIView):
-    serializer_class = RegisteredBikeListSerializer
+    serializer_class = BikeSerializer
 
     def get_queryset(self):
         if self.request.user.is_authenticated:

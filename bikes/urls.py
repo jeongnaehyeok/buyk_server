@@ -3,6 +3,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from .views import (
     BikeList,
     BikeCreate,
+    BikeDetail,
     BikeUpdate,
     BikeDelete,
     BikeImageCreate,
@@ -14,6 +15,7 @@ urlpatterns = [
     path('list/', BikeList.as_view()),
     path('list/register/', RegisteredBikeList.as_view()),
     path('create', BikeCreate.as_view()),
+    path('<int:pk>', BikeDetail.as_view()),
     path('<int:pk>/update', BikeUpdate.as_view()),
     path('<int:pk>/delete', BikeDelete.as_view()),
     path('image/create', BikeImageCreate.as_view()),
