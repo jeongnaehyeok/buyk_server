@@ -135,6 +135,10 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+
 # JWT 인증 설정
 REST_USE_JWT = True
 
@@ -153,13 +157,14 @@ ACCOUNT_LOGOUT_ON_GET = False # 로그아웃 설정
 
 # CORS
 CORS_ORIGIN_ALLOW_ALL= True # 모든 요청을 허락한다는 헤더
+CORS_ALLOW_CREDENTIALS = True
 
 # 아래와 같은 접근을 허락함
 CORS_ALLOW_METHODS = (
     'DELETE',
     'GET',
     'POST',
-    'PUT',
+    'PATCH',
 )
 
 # 아래와 같은 헤더를 허락함

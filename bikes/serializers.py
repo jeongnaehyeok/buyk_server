@@ -35,7 +35,7 @@ class BikeListSerializer(serializers.ModelSerializer):
         fields = (
             'model'
             'deal_area',
-            'bike_style'
+            'bike_style',
             'model_year__gte',
             'model_year__lte',
             'price__gte',
@@ -48,7 +48,6 @@ class BikeListSerializer(serializers.ModelSerializer):
             'page',
         )
         extra_kwargs = {
-            'model': required_false,
             'deal_area': required_false,
             'model_year': required_false,
         }
@@ -99,6 +98,7 @@ class BikeUpdateSerializer(serializers.ModelSerializer):
             'price',
             'deal_area',
             'model_year',
+            'bike_style',
             'driven_distance',
             'document_status',
             'repair_history',

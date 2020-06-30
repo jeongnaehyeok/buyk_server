@@ -113,10 +113,6 @@ class Bike(models.Model):
     detail_information = models.TextField(
         max_length=2047,
     )
-    crawled_url = models.URLField(
-        max_length=255,
-        null=True,
-    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -140,7 +136,6 @@ class Bike(models.Model):
             'repair_history': self.repair_history,
             'tuning_history': self.tuning_history,
             'detail_information': self.detail_information,
-            'crawled_url': self.crawled_url,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
         }
@@ -159,7 +154,7 @@ class BikeImage(models.Model):
     def get_info(self):
         return {
             'id': self.pk,
-            'image': self.image.path,
+            'image': self.image.url,
         }
 
     # 자동 삭제
