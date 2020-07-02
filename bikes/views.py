@@ -19,12 +19,9 @@ from .serializers import (
 class BikeList(generics.ListAPIView):
     serializer_class = BikeListSerializer
     filter_backends = [SearchFilter]
-    search_fields = ('model')
-    default_limit = 6
 
     def get_queryset(self):
         query_params = serialize_query_params(self.request.query_params)
-        page = query_params.pop('page') if 'page' in query_params.keys() else 0
 
         queryset = Bike.objects.select_related(
             'payment_method', 'user',
@@ -32,7 +29,7 @@ class BikeList(generics.ListAPIView):
             'bike_image',
         ).filter(
             **query_params,
-        ).order_by('-pk').all()[page*self.default_limit:(page+1)*self.default_limit]
+        ).order_by('-pk').all()
 
         return queryset
 
